@@ -4,8 +4,10 @@ require('dotenv').config()
 
 const app = express();
 
-// import router
-const userRoute = require('./routes/UserRoute')
+// middleware 
+app.use(express.json())
+app.use(cors())
+app.use(morgan("dev"))
 
 // Connect to clound database
 mongoose.connect(process.env.DATABASE)
@@ -19,5 +21,7 @@ app.listen(port, () => {
 })
 
 
+// import router
+const userRoute = require('./routes/UserRoute')
 
-app.use('/api',userRoute);
+app.get('/api/user',userRoute);
