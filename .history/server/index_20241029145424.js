@@ -13,6 +13,7 @@ const authRoute = require('./routes/AuthRoute')
 // middleware 
 app.use(express.json());
 
+
 // Connect to clound database
 mongoose.connect(process.env.DATABASE)
     .then(() => console.log("Connect Database Successfully"))
@@ -29,6 +30,7 @@ app.listen(port, () => {
 app.use('/api/user',userRoute);
 app.use('/api/auth',authRoute);
 
+
 app.use((err,req,res,next) => {
     const statusCode = err.statusCode || 500;
     const message = err.message || 'Internal Server Error'
@@ -38,5 +40,3 @@ app.use((err,req,res,next) => {
         statusCode,
     })
 })
-
-
