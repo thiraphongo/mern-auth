@@ -4,15 +4,8 @@ require('dotenv').config()
 
 const app = express();
 
-
-
 // import router
 const userRoute = require('./routes/UserRoute')
-const authRoute = require('./routes/AuthRoute')
-
-// middleware 
-app.use(express.json());
-
 
 // Connect to clound database
 mongoose.connect(process.env.DATABASE)
@@ -26,7 +19,5 @@ app.listen(port, () => {
 })
 
 
-// use Route
-app.use('/api/user',userRoute);
 
-app.use('/api/auth',authRoute);
+app.use('/api',userRoute);

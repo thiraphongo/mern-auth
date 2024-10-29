@@ -11,7 +11,7 @@ const userRoute = require('./routes/UserRoute')
 const authRoute = require('./routes/AuthRoute')
 
 // middleware 
-app.use(express.json());
+app.use(express.json())
 
 
 // Connect to clound database
