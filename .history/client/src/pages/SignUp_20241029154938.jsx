@@ -30,11 +30,9 @@ const SignUp = () => {
           Sign UP
         </button>
       </form>
-      <div className="flex gap-2 mt-5">
-        <p>Have an account ?</p>
-        <Link to="/sign-in">
-          <span className="text-blue-500">Sign in</span>
-        </Link>
+      <div className="">
+        <p>Have an account</p>
+        <span className="text-blue-500"><Link to='/sign-in'>Sign in</Link></span>
       </div>
     </div>
   );
