@@ -13,7 +13,6 @@ const SignUp = () => {
   const handleSubmit = async (e) => {
     try {
       setLoading(true);
-      setError(false);
       e.preventDefault();
       const res = await fetch(`/api/auth/signup`, {
         method: "POST",
@@ -23,15 +22,11 @@ const SignUp = () => {
         body: JSON.stringify(formData),
       });
       const data = await res.json();
-      console.log(data);
       setLoading(false);
-      if (!data.success) {
-        setError(true);
-        return;
-      }
+      setError(false);
     } catch (error) {
       setLoading(false);
-      setError(true);
+      setError(true)
     }
   };
 
@@ -61,11 +56,10 @@ const SignUp = () => {
           onChange={handleChange}
         />
         <button
-          disabled={loading}
           type=""
           className="bg-slate-700 text-white p-3 rounded-lg uppercase hover:opacity-95 disabled:opacity-80"
         >
-          {loading ? "Loading..." : "Sign Up"}
+          Sign UP
         </button>
       </form>
       <div className="flex gap-2 mt-5">
@@ -74,7 +68,6 @@ const SignUp = () => {
           <span className="text-blue-500">Sign in</span>
         </Link>
       </div>
-      <p className="text-red-700 mt-5">{error && 'Something went wrong'}</p>
     </div>
   );
 };

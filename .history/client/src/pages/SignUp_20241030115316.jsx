@@ -13,7 +13,6 @@ const SignUp = () => {
   const handleSubmit = async (e) => {
     try {
       setLoading(true);
-      setError(false);
       e.preventDefault();
       const res = await fetch(`/api/auth/signup`, {
         method: "POST",
@@ -29,6 +28,7 @@ const SignUp = () => {
         setError(true);
         return;
       }
+      setError(false);
     } catch (error) {
       setLoading(false);
       setError(true);

@@ -2,38 +2,26 @@ import { useState } from "react";
 import { Link } from "react-router-dom";
 
 const SignUp = () => {
-  const [formData, setFormData] = useState({});
-  const [error, setError] = useState(false);
-  const [loading, setLoading] = useState(false);
+
+  const [formData,setFormData] = useState({});
+  const [error, setError] = useState(null);
 
   const handleChange = (e) => {
-    setFormData({ ...formData, [e.target.id]: e.target.value });
+    setFormData({...formData, [e.target.id]:e.target.value});
   };
-
+  
   const handleSubmit = async (e) => {
-    try {
-      setLoading(true);
-      setError(false);
-      e.preventDefault();
-      const res = await fetch(`/api/auth/signup`, {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(formData),
-      });
-      const data = await res.json();
-      console.log(data);
-      setLoading(false);
-      if (!data.success) {
-        setError(true);
-        return;
-      }
-    } catch (error) {
-      setLoading(false);
-      setError(true);
+    e.preventDefault();
+    const res = await fetch(`/api/auth/signup`,{
+      method:'POST',
+      headers : {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(formData),
+    });
+    const data = await res.json();
     }
-  };
+  
 
   return (
     <div className="p-3 max-w-lg mx-auto">
@@ -61,11 +49,10 @@ const SignUp = () => {
           onChange={handleChange}
         />
         <button
-          disabled={loading}
           type=""
           className="bg-slate-700 text-white p-3 rounded-lg uppercase hover:opacity-95 disabled:opacity-80"
         >
-          {loading ? "Loading..." : "Sign Up"}
+          Sign UP
         </button>
       </form>
       <div className="flex gap-2 mt-5">
@@ -74,7 +61,6 @@ const SignUp = () => {
           <span className="text-blue-500">Sign in</span>
         </Link>
       </div>
-      <p className="text-red-700 mt-5">{error && 'Something went wrong'}</p>
     </div>
   );
 };

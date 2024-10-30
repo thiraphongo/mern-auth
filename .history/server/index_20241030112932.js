@@ -12,7 +12,7 @@ const authRoute = require('./routes/AuthRoute')
 
 // middleware 
 app.use(express.json());
-
+app.use(cors())
 
 // Connect to clound database
 mongoose.connect(process.env.DATABASE)

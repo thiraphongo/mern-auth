@@ -13,7 +13,6 @@ const SignUp = () => {
   const handleSubmit = async (e) => {
     try {
       setLoading(true);
-      setError(false);
       e.preventDefault();
       const res = await fetch(`/api/auth/signup`, {
         method: "POST",
@@ -25,7 +24,7 @@ const SignUp = () => {
       const data = await res.json();
       console.log(data);
       setLoading(false);
-      if (!data.success) {
+      if (data.error) {
         setError(true);
         return;
       }

@@ -13,7 +13,6 @@ const SignUp = () => {
   const handleSubmit = async (e) => {
     try {
       setLoading(true);
-      setError(false);
       e.preventDefault();
       const res = await fetch(`/api/auth/signup`, {
         method: "POST",
@@ -23,12 +22,8 @@ const SignUp = () => {
         body: JSON.stringify(formData),
       });
       const data = await res.json();
-      console.log(data);
       setLoading(false);
-      if (!data.success) {
-        setError(true);
-        return;
-      }
+      setError(false);
     } catch (error) {
       setLoading(false);
       setError(true);
@@ -74,7 +69,7 @@ const SignUp = () => {
           <span className="text-blue-500">Sign in</span>
         </Link>
       </div>
-      <p className="text-red-700 mt-5">{error && 'Something went wrong'}</p>
+      <p className="text-red-700">{error && 'Something went wrong'}</p>
     </div>
   );
 };
