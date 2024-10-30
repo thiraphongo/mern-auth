@@ -1,11 +1,10 @@
 import { useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 
 const SignIn = () => {
   const [formData, setFormData] = useState({});
   const [error, setError] = useState(false);
   const [loading, setLoading] = useState(false);
-  const navigate = useNavigate();
 
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.id]: e.target.value });
@@ -29,7 +28,6 @@ const SignIn = () => {
         setError(true);
         return;
       }
-      navigate('/');
     } catch (error) {
       setLoading(false);
       setError(true);
@@ -61,13 +59,13 @@ const SignIn = () => {
           type=""
           className="bg-slate-700 text-white p-3 rounded-lg uppercase hover:opacity-95 disabled:opacity-80"
         >
-          {loading ? "Loading..." : "Sign In"}
+          {loading ? "Loading..." : "Sign Up"}
         </button>
       </form>
       <div className="flex gap-2 mt-5">
-        <p>Dont have an account ?</p>
-        <Link to="/sign-up">
-          <span className="text-blue-500">Sign up</span>
+        <p>Have an account ?</p>
+        <Link to="/sign-in">
+          <span className="text-blue-500">Sign in</span>
         </Link>
       </div>
       <p className="text-red-700 mt-5">{error && 'Something went wrong'}</p>

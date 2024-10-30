@@ -29,7 +29,6 @@ const SignIn = () => {
         setError(true);
         return;
       }
-      navigate('/');
     } catch (error) {
       setLoading(false);
       setError(true);
