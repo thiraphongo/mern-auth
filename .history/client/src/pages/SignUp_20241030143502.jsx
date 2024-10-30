@@ -23,17 +23,15 @@ const SignUp = () => {
         body: JSON.stringify(formData),
       });
       const data = await res.json();
-      // console.log(data);
+      console.log(data);
       setLoading(false);
-      if (data.success === false) {
+      if (!data.success) {
         setError(true);
         return;
       }
     } catch (error) {
       setLoading(false);
       setError(true);
-
-      
     }
   };
 
