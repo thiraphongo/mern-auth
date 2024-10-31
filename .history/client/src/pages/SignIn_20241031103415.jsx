@@ -27,12 +27,14 @@ const SignIn = () => {
       const data = await res.json();
       if (data.success === false) {
         dispatch(signInFailure(data));
+        console.log(data);
         return;
       }
       dispatch(signInSuccess(data));
       navigate('/');
     } catch (error) {
-      dispatch(signInFailure(error));   
+      dispatch(signInFailure(error));
+      console.log(error.message);   
     }
   };
 

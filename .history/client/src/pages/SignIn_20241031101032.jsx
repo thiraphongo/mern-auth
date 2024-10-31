@@ -5,9 +5,9 @@ import { useDispatch, useSelector } from "react-redux";
 
 const SignIn = () => {
   const [formData, setFormData] = useState({});
-  const {loading,error} = useSelector((state) => state.user);
+  const {loading,error} = useSelector((state) => state.user)
   const navigate = useNavigate();
-  const dispatch = useDispatch();
+  const dispatch =useDispatch();
 
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.id]: e.target.value });
@@ -25,14 +25,15 @@ const SignIn = () => {
         body: JSON.stringify(formData),
       });
       const data = await res.json();
+      dispatch(signInSuccess(data));
+      setLoading(false);
       if (data.success === false) {
-        dispatch(signInFailure(data));
+        dispatch(signInFailure());
         return;
       }
-      dispatch(signInSuccess(data));
       navigate('/');
     } catch (error) {
-      dispatch(signInFailure(error));   
+      dispatch(signInFailure(error));
     }
   };
 
@@ -68,7 +69,7 @@ const SignIn = () => {
           <span className="text-blue-500">Sign up</span>
         </Link>
       </div>
-      <p className="text-red-700 mt-5">{error ? error.message || 'Something went wrong' : ''}</p>
+      <p className="text-red-700 mt-5">{error && 'Something went wrong'}</p>
     </div>
   );
 };

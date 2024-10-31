@@ -6,6 +6,7 @@ import { useDispatch, useSelector } from "react-redux";
 const SignIn = () => {
   const [formData, setFormData] = useState({});
   const {loading,error} = useSelector((state) => state.user);
+  console.log(loading,error);
   const navigate = useNavigate();
   const dispatch = useDispatch();
 
@@ -26,13 +27,13 @@ const SignIn = () => {
       });
       const data = await res.json();
       if (data.success === false) {
-        dispatch(signInFailure(data));
+        dispatch(signInFailure(data.message));
         return;
       }
       dispatch(signInSuccess(data));
       navigate('/');
     } catch (error) {
-      dispatch(signInFailure(error));   
+      dispatch(signInFailure(error));
     }
   };
 
